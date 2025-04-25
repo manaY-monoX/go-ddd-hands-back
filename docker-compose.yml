@@ -1,7 +1,7 @@
 version: '3.8'
 services:
-  goweb-service-exercise:
-    container_name: "service_exercise"
+  go-ddd-handson-backend:
+    container_name: "go-ddd-handson-backend"
     build: .
     tty: true
     volumes:
@@ -11,14 +11,14 @@ services:
     networks:
       - external
 
-  goweb-exercise-db:
+  go-ddd-handson-db:
     image: mysql:8.1
-    container_name: "goweb_exercise_db"
+    container_name: "go-ddd-handson-db"
     restart: always
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: exercisedb
+      MYSQL_DATABASE: go-ddd-handson-db
       TZ: 'Asia/Tokyo'
     volumes:
       - mysql-data:/var/lib/mysql
@@ -32,11 +32,11 @@ services:
       - external
   
   phpmyadmin:
-    container_name: "exercise_admin"
+    container_name: "go-ddd-handson-admin"
     image: phpmyadmin/phpmyadmin:latest
     environment:
       - PMA_ARBITRARY=1
-      - PMA_HOSTS=goweb_exercise_db
+      - PMA_HOSTS=go-ddd-handson-db
       - PMA_USER=root
       - PMA_PASSWORD=password
       - PMA_CHARSET=utf8mb4
