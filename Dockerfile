@@ -4,4 +4,4 @@ RUN apt-get update && apt-get install -y git
 # アプリケーションのディレクトリを作成
 RUN mkdir /go/src/app
 WORKDIR /go/src/app
-COPY . /go/src
+ADD . /go/src
