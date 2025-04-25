@@ -1,5 +1,5 @@
 {
-    "name": "GeWeb Service Exercise Project" ,
+    "name": "GoWeb Service Exercise Project" ,
     "dockerComposeFile":[
         "../docker-compose.yml"
     ],
