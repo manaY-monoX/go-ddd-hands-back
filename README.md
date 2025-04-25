@@ -1,4 +1,4 @@
-# Go研修 DDD WebApp
+# Go研修 DDD WebApp（backend）
 
 ![ogp](https://github.com/user-attachments/assets/1fd81192-e44e-425c-9c8d-8ab1b8d58f1b)
 
