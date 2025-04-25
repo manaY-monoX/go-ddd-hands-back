@@ -1,0 +1,56 @@
+version: '3.8'
+services:
+  goweb-service-exercise:
+    container_name: "service_exercise"
+    build: .
+    tty: true
+    volumes:
+      - ./app:/go/src/app
+    ports:
+      - 8085:8085
+    networks:
+      - external
+
+  goweb-exercise-db:
+    image: mysql:8.1
+    container_name: "goweb_exercise_db"
+    restart: always
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: exercisedb
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./init.d:/docker-entrypoint-initdb.d
+      - ./init.d/:/etc/mysql/conf.d/
+    ports:
+      - 3320:3306
+    expose:
+      - 3320
+    networks:
+      - external
+  
+  phpmyadmin:
+    container_name: "exercise_admin"
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=goweb_exercise_db
+      - PMA_USER=root
+      - PMA_PASSWORD=password
+      - PMA_CHARSET=utf8mb4
+    links:
+      - goweb-exercise-db:mysql
+    ports:
+      - 3300:80
+    networks:
+      - external
+
+networks:
+  external:
+    name: goweb-exercise-net
+    external: true
+
+volumes:
+  mysql-data:

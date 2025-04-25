@@ -1,0 +1,21 @@
+{
+    "name": "GeWeb Service Exercise Project" ,
+    "dockerComposeFile":[
+        "../docker-compose.yml"
+    ],
+    "service":"goweb-service-exercise",
+    "workspaceFolder": "/go/src/app",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "golang.go",
+                "onsi.ginkgo"        
+            ],
+            "settings": {
+                "go.gopath": "/go" ,
+                "go.inferGopath": true ,
+                "go.useLanguageServer": true
+            }
+        }
+    }
+}
